@@ -90,7 +90,7 @@ class SingleLinkedList {
         // Возвращает ссылку на самого себя
         // Инкремент итератора, не указывающего на существующий элемент списка, приводит к неопределённому поведению
         BasicIterator& operator++() noexcept {
-			assert(node_ != nullptr);
+	    assert(node_ != nullptr);
             this->node_ = node_->next_node;
             return *this;
         }
@@ -101,7 +101,7 @@ class SingleLinkedList {
         // приводит к неопределённому поведению
         BasicIterator operator++(int) noexcept {
             auto temp = BasicIterator(this->node_);
-			assert(node_ != nullptr);
+	    assert(node_ != nullptr);
             this->node_ = node_->next_node;
             return temp;
         }
@@ -110,7 +110,7 @@ class SingleLinkedList {
         // Вызов этого оператора у итератора, не указывающего на существующий элемент списка,
         // приводит к неопределённому поведению
         [[nodiscard]] reference operator*() const noexcept {
-			assert(node_ != nullptr);
+	    assert(node_ != nullptr);
             return this->node_->value;
         }
 
@@ -118,7 +118,7 @@ class SingleLinkedList {
         // Вызов этого оператора у итератора, не указывающего на существующий элемент списка,
         // приводит к неопределённому поведению
         [[nodiscard]] pointer operator->() const noexcept {
-			assert(node_ != nullptr);
+	    assert(node_ != nullptr);
             return &this->node_->value;
         }
 
@@ -290,7 +290,7 @@ public:
      */
     Iterator InsertAfter(ConstIterator pos, const Type& value) {
         try{
-			assert(pos.node_ != nullptr);
+	    assert(pos.node_ != nullptr);
             Node* new_node = new Node(value, std::next(pos, 1).node_);
             pos.node_->next_node = new_node;
             ++size_;
@@ -314,7 +314,7 @@ public:
      * Возвращает итератор на элемент, следующий за удалённым
      */
     Iterator EraseAfter(ConstIterator pos) noexcept {
-		assert(pos.node_ != nullptr);
+	assert(pos.node_ != nullptr);
         Node* node = std::next(pos, 1).node_->next_node;
         delete std::next(pos, 1).node_;
         pos.node_->next_node = node;
